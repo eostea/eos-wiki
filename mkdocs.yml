@@ -1,0 +1,6 @@
+site_name: EOS WiKi中文版
+
+extra:
+    version: 3.0
+
+theme: readthedocs
