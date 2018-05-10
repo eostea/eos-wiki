@@ -34,8 +34,8 @@
 |       |Smart Contract Files      |  | | | |
 |       |Debugging Smart Contracts      |  | | | |
 |Tutorials        |      |  | | | |
-|       |Getting Started with Smart Contracts      |  | | | |
-|       |Eosio.token, Exchange, and Eosio.msig Contracts      |  | | | |
+|       |Getting Started with Smart Contracts      |2018/5/10 |2018/5/10 |commit |durongzheng |
+|       |Eosio.token, Exchange, and Eosio.msig Contracts      |2018/5/10 |2018/5/10 |commit |durongzheng |
 |       | Hello World Tutorial     |  | | | |
 |       | Comprehensive Accounts & Wallets Tutorial     |  | | | |
 |       | Tic-Tac-Toe     |  | | | |
