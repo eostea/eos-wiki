@@ -1,5 +1,6 @@
 
 NOTES:
+
 - EOS的所有release版本可以从[这里](https://github.com/EOSIO/eos/releases)找到。
 - EOS的TAG可以在[这里](https://github.com/EOSIO/eos/tags)找到。
 - 标签永远不能提供包含自己的文档。因此，上述列表位于Readme.md时，不能包含最新的标签。在Wiki中发现的这个列表可以包含最新的标签。
