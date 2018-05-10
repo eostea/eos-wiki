@@ -1,5 +1,5 @@
 | 一级列表        | 二级列表   |  开始时间  | 结束时间        | 进度   |  翻译人  |
-| --------   | -----:  | :----:   | -----:  | :----:  |
+| :--------   | -----:  | :----:   | :-----:  | :----:  | :----: |
 | Glossary    |  |        | | | |
 |   Setting Up A Local Environment     |     |    | | | Allyn|
 |         |    Overview   |   | | |dreamingdog |
@@ -40,5 +40,5 @@
 |       | Comprehensive Accounts & Wallets Tutorial     |  | | | |
 |       | Tic-Tac-Toe     |  | | | |
 | Testnet       |      |  | | | |
-|       |  Single Host Multi-Node (Private) Testnet    |  | | | | 
+|       |  Single Host Multi-Node (Private) Testnet    |  | | | |
 | Releases      |      |  | | | | |
