@@ -1,6 +1,6 @@
 Tutorial 智能合约入门 
 ==================
-Rick Whitner 2018/5/6 编辑了这个页面 · 3修订
+Rick Whitner 2018/5/6 编辑了这个页面 · 有 3 处修订
 
 智能合约入门
 -------------------------------------------
@@ -147,4 +147,4 @@ $ cleos get accounts EOS7ijWCBmoXBi3CgtK7DJxentZZeTkeUnaSDvyro9dq7Sd1C3dC4
 ```
 下一步 - Eosio.token，Exchange和Eosio.msig合同
 ---------------------------------------------
-您现在已准备好继续下一个教程，[Eosio.token，Exchange和Eosio.msig合同](https://github.com/eosio/eos/wiki/Tutorial-eosio-token-Contract)
+您现在已准备好继续下一个教程，[Eosio.token，Exchange和Eosio.msig合同](https://github.com/eostea/eos-wiki/blob/master/docs/Tutorial_eos_token_Contract.md)
