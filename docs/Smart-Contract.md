@@ -26,19 +26,19 @@
 
 基于EOSIO的块链使用的是[WebAssembly](http://webassembly.org/) (WASM)来执行用户编写的智能合约。WASM是一种新兴的Web标准，广泛支持于谷歌、微软、苹果等。对编写WASM标准的智能合约来说使用[clang/llvm](https://clang.llvm.org/)和它的C/C++编译器是目前最为成熟的编译工具链。
 
-其他的第三方工具链在开发中，包括：Rust, Python, and Solidity。虽然这些其他语言可能看起来相对简单，但它们可能会影响您构建应用程序的性能。我们认为，对于开发高性能和安全的智能合约，C++是最好的语言，将来也还会继续使用C++。
+其他的第三方工具链在开发中，包括：Rust, Python, and Solidity。虽然这些其他语言可能看起来相对简单，但它们可能会影响您构建的应用程序性能。我们认为，对于开发高性能和安全的智能合约，C++是最好的语言，将来也还会继续使用C++。
 
 **Linux / Mac OS Experience**
 
-The EOSIO software supports the following environments:
+EOSIO 支持下面的操作系统:
 - Amazon 2017.09 and higher
 - Centos 7
-- Fedora 25 and higher (Fedora 27 recommended)
+- Fedora 25 and higher (Fedora 27 推荐使用)
 - Mint 18
-- Ubuntu 16.04 (Ubuntu 16.10 recommended)
-- MacOS Darwin 10.12 and higher (MacOS 10.13.x recommended)
+- Ubuntu 16.04 (Ubuntu 16.10 推荐使用)
+- MacOS Darwin 10.12 and higher (MacOS 10.13.x 推荐使用)
 
-**Command Line Knowledge**
+**命令行相关**
 
 There are a variety of tools provided along with EOSIO which requires you to have basic command line knowledge in order to interact with.
 
