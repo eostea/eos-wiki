@@ -40,18 +40,22 @@ EOSIO 支持下面的操作系统:
 
 **命令行相关**
 
-There are a variety of tools provided along with EOSIO which requires you to have basic command line knowledge in order to interact with.
+EOSIO提供了一些工具，您可以通过这些工具与eos进行交互。
 
 ### Basics of EOSIO Smart Contract
 
-**Communication Model**
+**通信模式**
 
-EOSIO Smart Contracts communicate with each other in the form of actions and shared memory database access, e.g. a contract can read the state of another contract's database as long as it is included within the read scope of the transaction with an async vibe. The async communication may result in spam which the resource limiting algorithm will resolve.
-There are two communication modes that can be defined within a contract:
+EOSIO智能合约以action和访问共享内存数据库（shared memory database access）的形式相互通信，例如，合约可以用异步感应（async vibe）读取另一个合约数据库的状态，只要它包含在同一个事务的读取范围内。
 
-- **Inline**. Inline is guaranteed to execute with the current transaction or unwind; no notification will be communicated regardless of success or failure. Inline operates with the same scopes and authorities the original transaction had.
+The async communication may result in spam which the resource limiting algorithm will resolve.
+异步通信可能导致资源限制算法将解决的垃圾邮件。
 
-- **Deferred**. Defer will get scheduled later at producer's discretion; it's possible to communicate the result of the communication or can simply timeout. Deferred can reach out to different scopes and carry the authority of the contract that sends them.
+在合约中可以定义两种通信模式:
+
+- **Inline**. 被保证在当前的transaction或unwind中执行；结果无论成功或失败，都不会通知任何通知。Inline操作与original transaction具有相同的范围和权限。
+
+- **Deferred**. Defer将被BP节点安排在之后执行，有可能会通知通信的结果或者超时。Deferred可以带着调用者的授权延伸到不同的scopes。
 
 **Action vs Transaction**
 
