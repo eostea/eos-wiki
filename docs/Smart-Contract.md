@@ -185,17 +185,16 @@ extern "C" {
 
 } // extern "C"
 ```
-在这个例子里，我们可以看到两个函数，`init`和`apply`。
-
-In this example you can see there are two functions, `init` and `apply`. All they do are log the actions delivered and makes no other checks. Anyone can deliver any action at any time provided the block producers allow it. Absent any required signatures, the contract will be billed for the bandwidth consumed.
+在这个例子里，我们可以看到两个函数，`init`和`apply`。它们会打印log并且不做任何检查。任何人都可以在任何时刻执行BP允许的所有action。在不需要任何签名的情况下，合约将被计入带宽消耗。（Absent any required signatures, the contract will be billed for the bandwidth consumed.）
 
 **init**
 
-The `init` function will only be executed once at initial deployment. It is used for initializing contract variables, e.g. the token supply for a currency contract.
+`init` 仅当合约第一次被部署的时候执行。 在这个函数里可以初始化变量, 比如，在currency合约中总体的token的供应量。
 
 **apply**
 
-`apply` is the action handler, it listens to all incoming actions and reacts according to the specifications within the function. The `apply` function requires two input parameters, `code` and `action`.
+`apply` 是一个中转函数, 他监听所有传入的action并且根据action
+it listens to all incoming actions and reacts according to the specifications within the function. The `apply` function requires two input parameters, `code` and `action`.
 
 **code filter**
 
