@@ -2,8 +2,8 @@
 
 <!-- MarkdownTOC autolink="true" bullets="-,*,+" -->
 
-- [Introduction to EOSIO Smart Contract](#introduction-to-eos-smart-contract)
-  * [Required Background Knowledge](#required-background-knowledge)
+- [介绍EOSIO智能合约](#介绍EOSIO智能合约)
+  * [编写智能合约需要的必备技能](#编写智能合约需要的必备技能)
   * [Basics of EOSIO Smart Contract](#basics-of-eos-smart-contract)
   * [Technical Limitation](#technical-limitation)
 - [Smart Contract Files](#smart-contract-files)
@@ -18,11 +18,13 @@
 
 <!-- /MarkdownTOC -->
 
-## Introduction to EOSIO Smart Contract
+## 介绍EOSIO智能合约
 
-### Required Background Knowledge
+### 编写智能合约需要的必备技能
 
-**C / C++ Experience**
+**C / C++ 相关**
+
+基于EOSIO的块链使用的是[WebAssembly](http://webassembly.org/) (WASM)来执行用户编写的智能合约。WASM是一种新兴的Web标准，广泛支持于谷歌、微软、苹果等。对编写WASM标准的智能合约来说使用[clang/llvm](https://clang.llvm.org/)和它的C/C++编译器是目前最为成熟的编译工具链。
 
 EOSIO based blockchains execute user-generated applications and code using [WebAssembly](http://webassembly.org/) (WASM). WASM is an emerging web standard with widespread support of Google, Microsoft, Apple, and others. At the moment the most mature toolchain for building applications that compile to WASM is [clang/llvm](https://clang.llvm.org/) with their C/C++ compiler.
 
