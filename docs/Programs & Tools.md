@@ -3,6 +3,8 @@
     - [Nodeos](#Nodeos)
     - [Cleos](#Cleos)
     - [keosd](#keosd)
+    - [launcher](#launcher)
+    - [snapshot](#snapshot)
 - [工具](#工具)
 ## 程序
 
