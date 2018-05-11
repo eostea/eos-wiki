@@ -4,9 +4,9 @@
 
 - [介绍EOSIO智能合约](#介绍EOSIO智能合约)
   * [编写智能合约需要的必备技能](#编写智能合约需要的必备技能)
-  * [Basics of EOSIO Smart Contract](#basics-of-eos-smart-contract)
+  * [EOSIO的基础知识](#EOSIO的基础知识)
   * [Technical Limitation](#technical-limitation)
-- [Smart Contract Files](#smart-contract-files)
+- [Smart ContEOSIO的基础知识act Files](#smart-contract-files)
   * [hpp](#hpp)
   * [cpp](#cpp)
   * [wast](#wast)
@@ -26,7 +26,7 @@
 
 基于EOSIO的块链使用的是[WebAssembly](http://webassembly.org/) (WASM)来执行用户编写的智能合约。WASM是一种新兴的Web标准，广泛支持于谷歌、微软、苹果等。对编写WASM标准的智能合约来说使用[clang/llvm](https://clang.llvm.org/)和它的C/C++编译器是目前最为成熟的编译工具链。
 
-其他的第三方工具链在开发中，包括：Rust, Python, and Solidity。虽然这些其他语言可能看起来相对简单，但它们可能会影响您构建的应用程序性能。我们认为，对于开发高性能和安全的智能合约，C++是最好的语言，将来也还会继续使用C++。
+其他的第三方工具链在开发中，包括：Rust, Python, and Solidity。虽然这些语言可能看起来相对简单，但它们可能会影响您所编写的智能性能。我们认为，对于开发高性能和安全的智能合约，C++是最好的语言，将来eos的智能合约也还会继续支持C++。
 
 **Linux / Mac OS Experience**
 
@@ -42,7 +42,7 @@ EOSIO 支持下面的操作系统:
 
 EOSIO提供了一些工具，您可以通过这些工具与eos进行交互。
 
-### Basics of EOSIO Smart Contract
+### EOSIO的基础知识
 
 **通信模式**
 
@@ -59,9 +59,9 @@ The async communication may result in spam which the resource limiting algorithm
 
 **Action vs Transaction**
 
-A action represents a single operation, whereas a transaction is a collection of one or more actions. A contract and an account communicate in the form of actions. Actions can be sent individually, or in combined form if they are intended to be executed as a whole.
+Action表示单个操作，而transaction是一个或多个action的集合。Action是合约和账户之间进行通信的方式。Action可以单独执行，或者组合组合起来作为一个整体执行。
 
-*Transaction with 1 action*.
+*仅有一个action的transaction*.
 
 ```base
 {
@@ -91,7 +91,7 @@ A action represents a single operation, whereas a transaction is a collection of
 }
 ```
 
-*Transaction with multiple actions*, these actions should either all be successed or all failed.
+*包含多个action的transaction*, 这些action要么全部成功要么全部失败.
 ```base
 {
   "expiration": "...",
@@ -129,38 +129,38 @@ A action represents a single operation, whereas a transaction is a collection of
 }
 ```
 
-**Action Name Restrictions**
+**Action名字约束**
 
-Action types are actually **base32 encoded 64-bit integers**. This means they are limited to the characters a-z, 1-5, and '.' for the first 12 characters. If there is a 13th character then it is restricted to the first 16 characters ('.' and a-p).
+Action的类型是 **base32被编码为64-bit整数**. 这意味着它的字符集长度是12，并且只能包含a-z，1-5，和'.'。 如果长度超过12个，他会自动截取前12个符合规则的字符作为action的名字（原文是：If there is a 13th character then it is restricted to the first 16 characters ('.' and a-p).，应该是写错了）
 
-**Transaction Confirmation**
+**Transaction 确认**
+收到一个transaction并不意味着这个transaction已经被确认，它仅仅说明这个transaction被一个BP节点接受并且没有错误，当然也意味着很有可能这个transaction被其他bp接受了。
 
-Receiving a transaction hash does not mean that the transaction has been confirmed, it only means that the node accepted it without error, which also means that there is a high probability other producers will accept it.
+当一个transaction被包含在一个block当中的时候，它才是可以被确认执行的。
 
-By means of confirmation, you should see the transaction in the transaction history with the block number of which it is included.
+## 智能合约文件
 
-## Smart Contract Files
-
-To keep things simple we have created a tool called **[eosiocpp](https://github.com/EOSIO/eos/wiki/Programs-&-Tools#eosiocpp)**  which can be used to bootstrap a new contract. The eosiocpp too will create the 3 smart contract files with the basic skeleton for you to get started.
+从简单易用的角度出发，我们编写了一个工具**[eosiocpp](https://github.com/EOSIO/eos/wiki/Programs-&-Tools#eosiocpp)** ，它可以创建一个新的智能合约。eosiocpp也可以创建3个合约文件，它们仅仅包含了合约的框架。
 
 ```base
 $ eosiocpp -n ${contract}
 ```
 
-The above will create a new empty project in the `./${project}` folder with three files:
+上面的命令会在`./${project}`目录下创建一个空的项目，它包含3个文件
+
 ```base
 ${contract}.abi ${contract}.hpp ${contract}.cpp
 ```
 
 ### hpp
 
-`${contract}.hpp` is the header file that contain the variables, constants, and functions referenced by the `.cpp` file.
+`${contract}.hpp` 这是合约的头文件，可以包含一些变量，常量和函数的声明。
 
 ### cpp
 
-The `${contract}.cpp` file is the source file that contains the functions of the contract.
+The `${contract}.cpp` 这是合约的源码文件，包含合约的具体实现。
 
-If you generate the `.cpp` file using the `eosiocpp` tool, the generated .cpp file would look similar to the following:
+如果你用`eosiocpp`生成了一个 `.cpp`， 那它的内容大概类似如下:
 
 ```base
 #include <${contract}.hpp>
@@ -185,6 +185,7 @@ extern "C" {
 
 } // extern "C"
 ```
+在这个例子里，我们可以看到两个函数，`init`和`apply`。
 
 In this example you can see there are two functions, `init` and `apply`. All they do are log the actions delivered and makes no other checks. Anyone can deliver any action at any time provided the block producers allow it. Absent any required signatures, the contract will be billed for the bandwidth consumed.
 
