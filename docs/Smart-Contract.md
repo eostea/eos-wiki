@@ -4,9 +4,9 @@
 
 - [介绍EOSIO智能合约](#介绍EOSIO智能合约)
   * [编写智能合约需要的必备技能](#编写智能合约需要的必备技能)
-  * [Basics of EOSIO Smart Contract](#basics-of-eos-smart-contract)
+  * [EOSIO的基础知识](#EOSIO的基础知识)
   * [Technical Limitation](#technical-limitation)
-- [Smart Contract Files](#smart-contract-files)
+- [Smart ContEOSIO的基础知识act Files](#smart-contract-files)
   * [hpp](#hpp)
   * [cpp](#cpp)
   * [wast](#wast)
@@ -42,7 +42,7 @@ EOSIO 支持下面的操作系统:
 
 EOSIO提供了一些工具，您可以通过这些工具与eos进行交互。
 
-### Basics of EOSIO Smart Contract
+### EOSIO的基础知识
 
 **通信模式**
 
