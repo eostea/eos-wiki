@@ -26,9 +26,7 @@
 
 基于EOSIO的块链使用的是[WebAssembly](http://webassembly.org/) (WASM)来执行用户编写的智能合约。WASM是一种新兴的Web标准，广泛支持于谷歌、微软、苹果等。对编写WASM标准的智能合约来说使用[clang/llvm](https://clang.llvm.org/)和它的C/C++编译器是目前最为成熟的编译工具链。
 
-EOSIO based blockchains execute user-generated applications and code using [WebAssembly](http://webassembly.org/) (WASM). WASM is an emerging web standard with widespread support of Google, Microsoft, Apple, and others. At the moment the most mature toolchain for building applications that compile to WASM is [clang/llvm](https://clang.llvm.org/) with their C/C++ compiler.
-
-Other toolchains in development by 3rd parties include: Rust, Python, and Solidity. While these other languages may appear simpler, their performance will likely impact the scale of application you can build. We expect that C++ will be the best language for developing high-performance and secure smart contracts and plan to use C++ for the foreseeable future.
+其他的第三方工具链在开发中，包括：Rust, Python, and Solidity。虽然这些其他语言可能看起来相对简单，但它们可能会影响您构建应用程序的性能。我们认为，对于开发高性能和安全的智能合约，C++是最好的语言，将来也还会继续使用C++。
 
 **Linux / Mac OS Experience**
 
