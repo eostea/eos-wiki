@@ -134,33 +134,33 @@ Action表示单个操作，而transaction是一个或多个action的集合。Act
 Action的类型是 **base32被编码为64-bit整数**. 这意味着它的字符集长度是12，并且只能包含a-z，1-5，和'.'。 如果长度超过12个，他会自动截取前12个符合规则的字符作为action的名字（原文是：If there is a 13th character then it is restricted to the first 16 characters ('.' and a-p).，应该是写错了）
 
 **Transaction 确认**
+收到一个transaction并不意味着这个transaction已经被确认，它仅仅说明这个transaction被一个BP节点接受并且没有错误，当然也意味着很有可能这个transaction被其他bp接受了。
 
-Receiving a transaction hash does not mean that the transaction has been confirmed, it only means that the node accepted it without error, which also means that there is a high probability other producers will accept it.
+当一个transaction被包含在一个block当中的时候，它才是可以被确认执行的。
 
-By means of confirmation, you should see the transaction in the transaction history with the block number of which it is included.
+## 智能合约文件
 
-## Smart Contract Files
-
-To keep things simple we have created a tool called **[eosiocpp](https://github.com/EOSIO/eos/wiki/Programs-&-Tools#eosiocpp)**  which can be used to bootstrap a new contract. The eosiocpp too will create the 3 smart contract files with the basic skeleton for you to get started.
+从简单易用的角度出发，我们编写了一个工具**[eosiocpp](https://github.com/EOSIO/eos/wiki/Programs-&-Tools#eosiocpp)** ，它可以创建一个新的智能合约。eosiocpp也可以创建3个合约文件，它们仅仅包含了合约的框架。
 
 ```base
 $ eosiocpp -n ${contract}
 ```
 
-The above will create a new empty project in the `./${project}` folder with three files:
+上面的命令会在`./${project}`目录下创建一个空的项目，它包含3个文件
+
 ```base
 ${contract}.abi ${contract}.hpp ${contract}.cpp
 ```
 
 ### hpp
 
-`${contract}.hpp` is the header file that contain the variables, constants, and functions referenced by the `.cpp` file.
+`${contract}.hpp` 这是合约的头文件，可以包含一些变量，常量和函数的声明。
 
 ### cpp
 
-The `${contract}.cpp` file is the source file that contains the functions of the contract.
+The `${contract}.cpp` 这是合约的源码文件，包含合约的具体实现。
 
-If you generate the `.cpp` file using the `eosiocpp` tool, the generated .cpp file would look similar to the following:
+如果你用`eosiocpp`生成了一个 `.cpp`， 那它的内容大概类似如下:
 
 ```base
 #include <${contract}.hpp>
@@ -185,6 +185,7 @@ extern "C" {
 
 } // extern "C"
 ```
+在这个例子里，我们可以看到两个函数，`init`和`apply`。
 
 In this example you can see there are two functions, `init` and `apply`. All they do are log the actions delivered and makes no other checks. Anyone can deliver any action at any time provided the block producers allow it. Absent any required signatures, the contract will be billed for the bandwidth consumed.
 
