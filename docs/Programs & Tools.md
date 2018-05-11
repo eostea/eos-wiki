@@ -57,3 +57,10 @@ cleos是一个命令行工具，它与nodeos公开的REST API进行交互。 为
 >  -f,--force-unique           强制交易特殊，这将消耗额外带宽，并移除为防止多次意外发布相同交易的任何保护措施</code></pre>
 ### keosd
 这是载入由插件配置的钱包的EOSIO钱包守护进程，如HTTP端或RPC API。
+
+### launcher
+
+launcher(启动器)可以使在局域网或广域网中发布多个eosd节点更加方便。 可以通过CLI（命令行）来对launcher进行操作，包括用来修改每个节点的配置文件，并且在对等主机之间安全地分发这些配置文件，然后启动eosd节点的多个实例。
+
+### snapshot
+snapshot引用了EOSIO/genesis仓库中相关应用模块，其中包含了用于crowdsale合约快照生成的nodejs应用程序，用于配置创世区块的Web图形界面以及其他与创世相关的工具。
