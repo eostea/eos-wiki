@@ -129,11 +129,11 @@ Action表示单个操作，而transaction是一个或多个action的集合。Act
 }
 ```
 
-**Action Name Restrictions**
+**Action名字约束**
 
-Action types are actually **base32 encoded 64-bit integers**. This means they are limited to the characters a-z, 1-5, and '.' for the first 12 characters. If there is a 13th character then it is restricted to the first 16 characters ('.' and a-p).
+Action的类型是 **base32被编码为64-bit整数**. 这意味着它的字符集长度是12，并且只能包含a-z，1-5，和'.'。 如果长度超过12个，他会自动截取前12个符合规则的字符作为action的名字（原文是：If there is a 13th character then it is restricted to the first 16 characters ('.' and a-p).，应该是写错了）
 
-**Transaction Confirmation**
+**Transaction 确认**
 
 Receiving a transaction hash does not mean that the transaction has been confirmed, it only means that the node accepted it without error, which also means that there is a high probability other producers will accept it.
 
