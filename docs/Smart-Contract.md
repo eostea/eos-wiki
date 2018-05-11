@@ -26,7 +26,7 @@
 
 基于EOSIO的块链使用的是[WebAssembly](http://webassembly.org/) (WASM)来执行用户编写的智能合约。WASM是一种新兴的Web标准，广泛支持于谷歌、微软、苹果等。对编写WASM标准的智能合约来说使用[clang/llvm](https://clang.llvm.org/)和它的C/C++编译器是目前最为成熟的编译工具链。
 
-其他的第三方工具链在开发中，包括：Rust, Python, and Solidity。虽然这些其他语言可能看起来相对简单，但它们可能会影响您构建的应用程序性能。我们认为，对于开发高性能和安全的智能合约，C++是最好的语言，将来也还会继续使用C++。
+其他的第三方工具链在开发中，包括：Rust, Python, and Solidity。虽然这些语言可能看起来相对简单，但它们可能会影响您所编写的智能性能。我们认为，对于开发高性能和安全的智能合约，C++是最好的语言，将来eos的智能合约也还会继续支持C++。
 
 **Linux / Mac OS Experience**
 
@@ -59,9 +59,9 @@ The async communication may result in spam which the resource limiting algorithm
 
 **Action vs Transaction**
 
-A action represents a single operation, whereas a transaction is a collection of one or more actions. A contract and an account communicate in the form of actions. Actions can be sent individually, or in combined form if they are intended to be executed as a whole.
+Action表示单个操作，而transaction是一个或多个action的集合。Action是合约和账户之间进行通信的方式。Action可以单独执行，或者组合组合起来作为一个整体执行。
 
-*Transaction with 1 action*.
+*仅有一个action的transaction*.
 
 ```base
 {
@@ -91,7 +91,7 @@ A action represents a single operation, whereas a transaction is a collection of
 }
 ```
 
-*Transaction with multiple actions*, these actions should either all be successed or all failed.
+*包含多个action的transaction*, 这些action要么全部成功要么全部失败.
 ```base
 {
   "expiration": "...",
