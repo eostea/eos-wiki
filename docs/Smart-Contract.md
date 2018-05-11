@@ -193,24 +193,23 @@ extern "C" {
 
 **apply**
 
-`apply` 是一个中转函数, 他监听所有传入的action并且根据action
-it listens to all incoming actions and reacts according to the specifications within the function. The `apply` function requires two input parameters, `code` and `action`.
+`apply` 是一个中转函数, 他监听所有传入的action，并且根据action调用合约相应的函数。`apply`函数需要两个参数， `code` 和 `action`。
 
 **code filter**
 
-In order to respond to a particular action, structure the `apply` function as follows. You may also construct a response to general actions by omitting the code filter.
+这个参数是为了对action做出回应，比如下面的`apply`函数，你可以构造一个通用响应去忽略`code`。
+（In order to respond to a particular action, structure the `apply` function as follows. You may also construct a response to general actions by omitting the code filter.）
 
 ```base
 if (code == N(${contract_name}) {
     // your handler to respond to particular action
 }
 ```
-
-You can also define responses to respective actions in the code block.
+当然你也可以为每个action构造各自的一个响应。
 
 **action filter**
 
-To respond to a particular action, structure your `apply` function as follows. This is normally used in conjuction with the code filter.
+为了响应每一个action，比如构造比如下面的`apply`函数。通常和code filter一起使用
 
 ```base
 if (action == N(${action_name}) {
@@ -220,24 +219,25 @@ if (action == N(${action_name}) {
 
 ### wast
 
-Any program to be deployed to the EOSIO blockchain must be compiled into WASM format. This is the only format the blockchain accepts.
+任何合约程序想要部署到EOSIO的区块链网络中都必须编译成WASM格式。这是EOS的支持唯一个的格式。
 
-Once you have the CPP file ready, you can compile it into a text version of WASM (.wast) using the `eosiocpp` tool.
+一旦你的CPP文件写好了，有就可以用`eosiocpp`把它编译成WASM (.wast)文件了
 
 ```base
 $ eosiocpp -o ${contract}.wast ${contract}.cpp
 ```
 ### abi
 
-The Application Binary Interface (ABI) is a JSON-based description on how to convert user actions between their JSON and Binary representations. The ABI also describes how to convert the database state to/from JSON. Once you have described your contract via an ABI then developers and users will be able to interact with your contract seamlessly via JSON.
+ABI（ Application Binary Interface）文件是一个JSON格式的描述文件，说明了如何在他们的JSON和二进制之间转化用户的action。ABI文件也同时说明了如何转换数据库的状态。一旦你用了ABI描述了你的合约，开发人员就和用户就可以和你的合约通过JSON进行交互。
 
-The ABI file can be generated from the `.hpp` files using the `eosiocpp` tool:
+ABI可以通过`.hpp`文件用`eosiocpp`生成。
 
 ```base
 $ eosiocpp -g ${contract}.abi ${contract}.hpp
 ```
 
-The following is an example of what the skeleton contract ABI looks like:
+下面这个例子说明了一个ABI文件的框架：
+
 ```base
 {
   "types": [{
