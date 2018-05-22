@@ -2,19 +2,20 @@
 EOSIO区块链上持久数据的多索引抽象容器
 
 ## 目录
-- 概览
-    - 持久性服务的需求
-- EOSIO多索引API
-    - EOSIO多索引迭代器
-- 其他
-    - 怎样创建你的EOSIO多索引表
-    - 怎样去用你的EOSIO多索引表
-- 保留传输跟踪器示例
-- C++ API 参考
-    - eosio::multi_index
-    - eosio::indexed_by
-    - eosio::multi_index::index
+- [概览](#overview)
+    - [持久性服务的需求](#need)
+- [EOSIO多索引API](#Multi-Index)
+    - [EOSIO多索引迭代器](#Multi-Index-Itr)
+- [其他](#other)
+    - [怎样创建你的EOSIO多索引表](#other)
+    - [怎样去用你的EOSIO多索引表](#other1)
+- [保留传输跟踪器示例](#保留传输跟踪器示例)
+- [C++ API 参考](#api)
+    - [eosio::multi_index](#api)
+    - [eosio::indexed_by](#index)
+    - [eosio::multi_index::index](#index)
 
+<a name='overview'></a>
 ## 概览
 EOSIO提供了一系列服务和接口，使合约开发人员能够跨越`action`持续状态，从而实现交易边界。如果没有持久性，处理过程中产生的状态将在处理超出范围时丢失。 持久性组件包括：
 
@@ -24,12 +25,14 @@ EOSIO提供了一系列服务和接口，使合约开发人员能够跨越`actio
 4. 用于访问核心服务的C API，是图书馆和系统开发人员感兴趣的
 本文件涵盖前三个主题。
 
+<a name='need'></a>
 ## 持久性服务的需求
 
 Action调用EOSIO合约，Action在被称为Action上下文的环境中运作。如下图所示，Action上下文提供执行Action所需的几件事情。其中一件事是Action的工作内存。这是Action执行的地方。在处理一个Action之前，EOSIO为该Action进行一次内存清理工作。在新操作的上下文中当另一个操作执行时可能已经被设置的变量不可用。在行动中传递状态的唯一方法是将其持久存储并从EOSIO数据库中检索。
 
 ![](https://eosfans-static.strahe.com/photo/2018/19b6de52-8d10-484b-bc64-aead47b24164.png?x-oss-process=image/resize,w_1920)
 
+<a name='Multi-Index'></a>
 ## EOSIO Multi-Index API
 
 EOSIO Multi-Index API 提供了关于EOSIO数据库的C++接口。`EOSIO Multi-Index API`来自[Boost Multi-Index Containers](https://www.boost.org/doc/libs/1_66_0/libs/multi_index/doc/index.html)。该API为具有丰富检索功能的对象存储提供了一个模型,支持使用不同排序和访问语义的多个索引.`Multi-Index API`通过`eosio::multi_index`类提供，在文件`contracts/eosiolib`下。该类使用C++编写的合约能够读取和修改EOSIO数据库中的持久状态。
@@ -43,12 +46,13 @@ Multi-Index容器接口`eosio::multi_index`提供了一个任意C++类型的同�
 
 传统数据库表通常有一个唯一的主键，它允许明确标识表中的特定行，并为表中的行提供标准排序顺序。`eosio::multi_index`支持类似的语义，但是该对象的主键在`eosio::multi_index`容器必须是唯一的无符号64位整数。`eosio::multi_index`中的对象容器按主键索引按无符号64位整数主键的升序排序。
 
+<a name='Multi-Index-Itr'></a>
 ## EOSIO Multi-Index 迭代器
 
 与其他区块链基础架构相比，EOSIO持久性服务的一个关键区别在于其多指标迭代器。 与仅提供键值存储的其他区块链不同，EOSIO Multi-Index表允许合约开发人员保存按照各种不同键类型排序的对象集合，这些键类型可以从对象内的数据派生。这使得丰富的检索功能。最多可以定义16个二级索引，每个索引都有自己的排序和检索表格内容的方式。
 
 EOSIO多指数迭代器遵循C++迭代器通用的模式。所有迭代器都是双向常量，可以是const_iterator或const_reverse_iterator。 迭代器可以取消引用以提供对多索引表中的对象的访问。
-
+<a name='other'></a>
 ## 如何创建您的EOSIO Multi-Index表
 以下是使用EOSIO多指标表创建您自己的持久性数据的步骤摘要。
 
@@ -61,7 +65,7 @@ EOSIO多指数迭代器遵循C++迭代器通用的模式。所有迭代器都是
   - idx_double - 双精度浮点键.
   - idx_long_double - 四倍精度浮点键.
 - 为每个二级索引定义一个键提取器。密钥提取器是一个函数，用于从多索引表的元素中获取密钥。请参阅下面的 Multi-Index Constructor和indexed_by部分。
-
+<a name='other1'></a>
 ### 如何使用您的EOSIO Multi-Index表
 - 实例化您的多索引表.
 - 按照您的合约要求插入（emplace）到表中，然后修改或清除表中的对象。
@@ -213,8 +217,9 @@ auto over_miles_itr = last_service_date_index.lower_bound(3000);  // all records
 // code to iterate the customer table forward for greater than 3000 miles
 ...
 ```
-
+<a name='api'></a>
 ## C++ API
+
 ## eosio::multi_index
 
 本节介绍`eosio::multi_index C ++ API`。 该接口实际上是Boost Multi-Index容器库的改编版本。 它直接使用`boost/multi_index/const_mem_fun`类模板进行密钥提取。 它还使用Boost Hana库进行元编程。 有关其他概念信息和详细信息，请参阅www.boost.org上的Boost文档。
@@ -516,7 +521,8 @@ multi_index<mytable, record,
 ```
 在此示例中，多索引表名为`mytable`，具有对象（行）类型`record`，`bysecondary`为辅助索引，其名称使用N宏转换为所需的编码格式。 为记录对象类指定const_mem_fun键提取器; 键类型是uint128_t，使用`record::get_secondary`函数获得。
 
-# 该 eosio::multi_index::index API（二级索引）
+<a name='index'></a>
+## 该 eosio::multi_index::index API（二级索引）
 
 EOSIO多索引表最多可以有16个二级索引。 索引可以使用`get_index`方法从`multi_index`对象中检索，然后可以使用通用的C++迭代器模式进行迭代。
 
