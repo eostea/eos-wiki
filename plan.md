@@ -26,7 +26,7 @@
 |       |  How to run keosd    |  | | | |
 |Cleos Command Reference       |      |  | |  | 少爷|
 |Persistence API       |      |  | | |  |
-|       |Overview      |  | |  | 大马|
+|       |Overview      |  | |  | lome|
 |       |The EOSIO Multi-Index API      |  | | |  |
 |       |C++ API Reference      |  | | | |
 |Smart Contracts       |      |  || |alex |
